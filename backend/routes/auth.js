@@ -41,6 +41,20 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("check-session", async (req, res) => {
+  try {
+    const token = req.header.authorization?.replace("Bearer ", "");
+    if (!token) res.status(401).json({ error: "no token provided" });
+    const { data, error } = await supabase.auth.getUser(token);
+    if (error || !data?.user) {
+      return res.status(401).json({ error: "invalid or ecpired token" });
+    }
+    return res.json({ user: data.user });
+  } catch (err) {
+    return res.status(500).json({ error: "internal server error" });
+  }
+});
+
 router.post("/logout", async (req, res) => {
   try {
     await supabase.auth.signOut();
