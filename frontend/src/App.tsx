@@ -1,10 +1,33 @@
-function App() {
-  return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600">TailwindCSS is working! 🚀</h1>
-      <p className="mt-4 text-gray-600">Welcome to React + TailwindCSS setup.</p>
-    </div>
-  );
-}
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import Index from "./pages/Index";
+import Auth from "./pages/Auth";
+// import Playlists from "./pages/Playlists";
+// import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
+
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path="/" element={<Index />} /> */}
+          <Route path="/" element={<Auth />} />
+          {/* <Route path="/playlists" element={<Playlists />} />
+          <Route path="/profile" element={<Profile />} /> */}
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;
