@@ -3,6 +3,7 @@ import { supabase } from "../supabaseClient.js";
 
 const router = express.Router();
 
+/* 🔹 REGISTER */
 router.post("/register", async (req, res) => {
   const { email, password, username } = req.body;
   if (!email || !password || !username) {
@@ -15,13 +16,16 @@ router.post("/register", async (req, res) => {
       password,
       user_metadata: { username },
     });
+
     if (error) throw error;
-    res.status({ success: true, user: data.user });
+
+    res.status(200).json({ success: true, user: data.user });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
   }
 });
 
+/* 🔹 LOGIN */
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -30,7 +34,9 @@ router.post("/login", async (req, res) => {
       email,
       password,
     });
+
     if (error) throw error;
+
     res.json({
       success: true,
       user: data.user,
@@ -41,26 +47,31 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("check-session", async (req, res) => {
+/* 🔹 CHECK SESSION */
+router.get("/check-session", async (req, res) => {
   try {
-    const token = req.header.authorization?.replace("Bearer ", "");
-    if (!token) res.status(401).json({ error: "no token provided" });
+    const token = req.headers.authorization?.replace("Bearer ", "");
+    if (!token) return res.status(401).json({ error: "No token provided" });
+
     const { data, error } = await supabase.auth.getUser(token);
     if (error || !data?.user) {
-      return res.status(401).json({ error: "invalid or ecpired token" });
+      return res.status(401).json({ error: "Invalid or expired token" });
     }
+
     return res.json({ user: data.user });
   } catch (err) {
-    return res.status(500).json({ error: "internal server error" });
+    return res.status(500).json({ error: "Internal server error" });
   }
 });
 
+/* 🔹 LOGOUT */
 router.post("/logout", async (req, res) => {
   try {
-    await supabase.auth.signOut();
+
     res.json({ success: true, message: "Logged out successfully." });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
   }
 });
+
 export default router;
