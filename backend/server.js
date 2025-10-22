@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
+import musicRoutes from "./routes/musicRoutes.js";
 
 dotenv.config();
 
@@ -11,6 +12,8 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
+
+app.use("/api/music", musicRoutes);
 
 app.get("/", (req, res) => {
   res.send("Supabase Auth API is running ...");
