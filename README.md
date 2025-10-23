@@ -6,6 +6,7 @@ Tujuannya adalah untuk membuat platform musik berbasis web yang dapat memutar, m
 ---
 
 ## 📚 Daftar Isi
+
 - [Struktur Proyek](#-struktur-proyek)
 - [Teknologi yang Digunakan](#-teknologi-yang-digunakan)
 - [Prasyarat Instalasi](#-prasyarat-instalasi)
@@ -45,12 +46,12 @@ Struktur ini memisahkan sisi **backend (server)** dan **frontend (client)** untu
 
 ## ⚙️ Teknologi yang Digunakan
 
-| Komponen     | Teknologi Utama |
-|---------------|----------------|
-| **Frontend**  | React, TypeScript, HTML, CSS |
-| **Backend**   | Node.js, Express (kemungkinan) |
-| **Build Tools** | npm / yarn |
-| **Database**  | (Belum diketahui – dapat disesuaikan, misalnya MongoDB) |
+| Komponen        | Teknologi Utama                |
+| --------------- | ------------------------------ |
+| **Frontend**    | React, TypeScript, HTML, CSS   |
+| **Backend**     | Node.js, Express (kemungkinan) |
+| **Build Tools** | npm / yarn                     |
+| **Database**    | (Supabase)                     |
 
 ---
 
@@ -58,8 +59,8 @@ Struktur ini memisahkan sisi **backend (server)** dan **frontend (client)** untu
 
 Sebelum memulai, pastikan Anda telah menginstal:
 
-- [Node.js](https://nodejs.org/) **v16.x** atau lebih baru  
-- [npm](https://www.npmjs.com/) atau [yarn](https://yarnpkg.com/)  
+- [Node.js](https://nodejs.org/) **v16.x** atau lebih baru
+- [npm](https://www.npmjs.com/) atau [yarn](https://yarnpkg.com/)
 - [Git](https://git-scm.com/)
 
 ---
@@ -94,27 +95,31 @@ npm install
 ## ▶️ Menjalankan Proyek
 
 ### Jalankan Backend
+
 ```bash
 cd backend
 npm start
 ```
+
 Server backend akan berjalan di `http://localhost:5000` (default).
 
 ### Jalankan Frontend
+
 ```bash
 cd frontend
 npm run dev
 ```
+
 Aplikasi frontend biasanya akan berjalan di `http://localhost:3000`.
 
 ---
 
 ## 💡 Contoh Penggunaan
 
-1. Jalankan backend dan frontend sesuai langkah di atas.  
-2. Buka browser dan akses `http://localhost:3000`.  
-3. Pilih lagu dari daftar yang tersedia.  
-4. Tekan tombol **Play** untuk memutar musik.  
+1. Jalankan backend dan frontend sesuai langkah di atas.
+2. Buka browser dan akses `http://localhost:3000`.
+3. Pilih lagu dari daftar yang tersedia.
+4. Tekan tombol **Play** untuk memutar musik.
 5. Anda dapat menambahkan lagu ke daftar putar dan mengontrol pemutaran.
 
 ---
@@ -127,8 +132,8 @@ Beberapa konfigurasi (jika digunakan) dapat ditentukan dalam file `.env`:
 # Konfigurasi server
 PORT=5000
 
-# Jika menggunakan database
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/webs-music
+# Jika menggunakan subabase atau database lain
+DATABASE_URL=your_database_url
 
 # Token keamanan
 JWT_SECRET=your_secret_key
@@ -140,12 +145,12 @@ Pastikan untuk **tidak meng-commit file `.env`** ke GitHub demi keamanan.
 
 ## ✨ Fitur
 
-- 🎧 Pemutaran musik berbasis web  
-- 📁 Manajemen playlist  
-- 🔍 Pencarian lagu  
-- ⚙️ API backend untuk streaming dan data musik  
-- 💻 Tampilan modern berbasis React (frontend)  
-- 🧩 Struktur modular (frontend & backend terpisah)  
+- 🎧 Pemutaran musik berbasis web
+- 📁 Manajemen playlist
+- 🔍 Pencarian lagu
+- ⚙️ API backend untuk streaming dan data musik
+- 💻 Tampilan modern berbasis React (frontend)
+- 🧩 Struktur modular (frontend & backend terpisah)
 
 ---
 
@@ -157,6 +162,4 @@ Proyek ini dibuat dan dikembangkan oleh:
 
 ---
 
-
 > **Webs Music** — dengarkan, kembangkan, dan nikmati musik di web Anda! 🎶
-
